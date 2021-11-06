@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -23,7 +24,7 @@ function App() {
             {/* Define routes to render different page components at different paths */}
             <Route exact path="/" component={Home} />
             {/* Define a route that will take in variable data */}
-            <Route exact path="/profiles/:profileId" component={Profile} />
+            <Route exact path="/profiles/" component={Profile} />
           </div>
           <Footer />
         </div>
