@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import AboutUs from './pages/AboutUs';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -25,6 +26,7 @@ function App() {
             <Route exact path="/" component={Home} />
             {/* Define a route that will take in variable data */}
             <Route exact path="/profiles/" component={Profile} />
+            <Route exact path="/aboutus/" component={AboutUs}/>
           </div>
           <Footer />
         </div>
