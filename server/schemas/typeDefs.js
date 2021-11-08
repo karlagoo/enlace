@@ -7,6 +7,7 @@ const typeDefs = gql`
     date: String!
     time: String!
     description: String!
+    users: [User]
 }
   type User {
     _id: ID
