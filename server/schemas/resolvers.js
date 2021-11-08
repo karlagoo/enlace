@@ -1,43 +1,50 @@
-const { Profile } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
+const { Event, User } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    profiles: async () => {
-      return Profile.find();
+    user: async (parent, { userName }) => {
+      return User.findOne({ userName }).populate('events')
     },
 
-    profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
-    },
+    event: async (parent, { userName }) => {
+      const params = userName ? { userName } : {};
+      return Event.find(params).sort({ createdAt: -1 });
+    }
   },
 
   Mutation: {
-    addProfile: async (parent, { name }) => {
-      return Profile.create({ name });
+    addUser: async (parent, { userName, email, password }) => {
+      const user = await User.create({ userName, email, password });
+      const token = signToken(user);
+      return { token, user };
     },
-    addSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        {
-          $addToSet: { skills: skill },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
     },
-    removeProfile: async (parent, { profileId }) => {
-      return Profile.findOneAndDelete({ _id: profileId });
+    addEvent: async(parent, {title, date, time, description})=> {
+      const event = await Event.create({title, date, time, description});
+      return event;
     },
-    removeSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        { $pull: { skills: skill } },
-        { new: true }
-      );
+    removeEvent: async(parent, {eventId})=>{
+      return Event.findOneAndDelete({_id: eventId})
     },
-  },
+  }
 };
 
 module.exports = resolvers;
