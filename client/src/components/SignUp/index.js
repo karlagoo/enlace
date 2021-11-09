@@ -1,19 +1,30 @@
 import React, { useState } from 'react'
 
+const SignUp = () => {
 
-const LogIn = () => {
-
+const [firstName, setFirstName] = useState('');
+const [lastName, setLastName] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
 const handleInputChange = (e) => {
     // Getting the value and name of the input which triggered the change
-    const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
-
-    // Ternary statement that will call either setFirstName or setLastName based on what field the user is typing in
-    return name === 'email' ? setEmail(value) : setPassword(value);
+    const { target } = e;
+    const inputType = target.name;
+    const inputValue = target.value;
+    
+    if(inputType==='firstName'){
+        setFirstName(inputValue)
+    } else if(inputType==='lastName'){
+        setLastName(inputValue)
+    } else if(inputType==='email'){
+        setEmail(inputValue)
+    } else if(inputType==='password'){
+        setPassword(inputValue)
+    }
+    
+    
+    
   };
 
   const handleFormSubmit = (e) => {
@@ -21,21 +32,31 @@ const handleInputChange = (e) => {
     e.preventDefault();
 
     const body = {
+        firstName: firstName,
+        lastName: lastName,
         email: email,
         password: password
     }
     console.log(body)
     // Alert the user their first and last name, clear the inputs
-    alert(`Hello ${email} ${password}`);
+    alert(`Hello ${firstName} ${lastName} ${email} ${password}`);
    
   };
 
     return (
         <div>
-        <div className='card'>
+       <div className='card'>
             <div className='card-body'>
-                <h5 className='card-title'>Log In</h5>
+                <h5 className='card-title'>Sign Up</h5>
             <form id="logInForm">
+            <div className="form-group">
+                    <label for="exampleInputEmail1">First Name</label>
+                    <input type="text" className="form-control" name='firstName' id="firstName" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
+                </div>
+                <div className="form-group">
+                    <label for="exampleInputEmail1">Last Name</label>
+                    <input type="text" className="form-control" name='lastName' id="lastName" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
+                </div>
                 <div className="form-group">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" className="form-control" name='email' id="emailInput" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
@@ -50,14 +71,9 @@ const handleInputChange = (e) => {
                 <button type="submit" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
             </form>
             </div>
-        </div>
-        
-      
-        
-        
-        
+        </div>     
         </div>
     )
 }
 
-export default LogIn
+export default SignUp
