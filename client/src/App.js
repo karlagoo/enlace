@@ -6,6 +6,9 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import AboutUs from './pages/AboutUs';
 
+// import Navbar - Jess
+import Navbar from './components/Navbar';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -27,6 +30,12 @@ function App() {
             {/* Define a route that will take in variable data */}
             <Route exact path="/profiles/" component={Profile} />
             <Route exact path="/aboutus/" component={AboutUs}/>
+
+            {/* Import Navbar test - Jess */}
+            <Router>
+            <Navbar />
+            </Router>
+
           </div>
           <Footer />
         </div>
