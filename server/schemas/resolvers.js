@@ -4,18 +4,19 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    user: async (parent, { userName }) => {
-      return User.findOne({ userName }).populate('events')
+    user: async (parent, { email }) => {
+      return User.findOne({ email }).populate('events')
     },
 
-    event: async (parent, { userName }) => {
-      const params = userName ? { userName } : {};
+    event: async (parent, { title }) => {
+      const params = title ? { title } : {};
       return Event.find(params).sort({ createdAt: -1 });
     },
 
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
+        
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -29,6 +30,7 @@ const resolvers = {
       console.log(token);
       return { token, user };
     },
+
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -46,13 +48,14 @@ const resolvers = {
       console.log(token);
       return { token, user };
     },
-    addEvent: async(parent, {title, date, time, description}, context)=> {
-      const event = await Event.create({title, date, time, description});
+
+    addEvent: async (parent, { title, date, time, description }, context) => {
+      const event = await Event.create({title, date, time, description,});
       if(context.user){
-        return User.findOneAndUpdate(
-          {_id: userId},
+         return User.findOneAndUpdate(
+          {_id: context.user._id},
           {
-            $addToSet: { plannedEvents: eventId}
+            $push:  {plannedEvents: event._id}
           },
           {
             new: true,
@@ -60,11 +63,20 @@ const resolvers = {
           }
         )
       }
-      return event;
+      console.log(context.user)
+      return event ;
     },
 
-    removeEvent: async(parent, {eventId})=>{
-      return Event.findOneAndDelete({_id: eventId})
+
+    removeEvent: async (parent, { _id }) => {
+      console.log(_id)
+      return Event.findOneAndDelete({_id: _id})
+    },
+
+    removeUser: async (parent, args, context) => {
+      if(context.user){
+        return User.findOneAndDelete({_id: context.user._id});
+      }
     },
   }
 };

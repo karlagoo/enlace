@@ -57,14 +57,6 @@ const handleInputChange = (e) => {
                     <label for="exampleInputEmail1">Last Name</label>
                     <input type="text" className="form-control" name='lastName' id="lastName" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
                 </div>
-                <div className="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" className="form-control" name='email' id="emailInput" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" className="form-control" name='password' id="passwordInput" onChange={handleInputChange} placeholder="Password"/>
-                </div>
                 <div className="form-check">
 
                 </div>
