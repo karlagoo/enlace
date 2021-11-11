@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-
+import { useMutation, useQuery } from '@apollo/client';
+import { USER_LOGIN } from '../../utils/mutations';
 
 const LogIn = () => {
+
+const [userLogIn, { error }] = useMutation(USER_LOGIN);
 
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
@@ -25,6 +28,16 @@ const handleInputChange = (e) => {
         password: password
     }
     console.log(body)
+    try{
+        const { data } = userLogIn({
+            variables: { body },
+        });
+        
+
+    }
+    catch(err){
+        console.log(err);
+    }
     // Alert the user their first and last name, clear the inputs
     alert(`Hello ${email} ${password}`);
    
