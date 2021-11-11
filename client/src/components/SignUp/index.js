@@ -1,45 +1,50 @@
-import React, { useState } from 'react'
+import { useMutation } from '@apollo/client';
+import React, { useState } from 'react';
+import { CREATE_USER } from '../../utils/mutations';
+
 
 const SignUp = () => {
 
-const [firstName, setFirstName] = useState('');
-const [lastName, setLastName] = useState('');
+const [userName, setUsername] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
+const [addUser, {error}] = useMutation(CREATE_USER);
+
 const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
+    const { value, name } = e.target;
     
-    if(inputType==='firstName'){
-        setFirstName(inputValue)
-    } else if(inputType==='lastName'){
-        setLastName(inputValue)
-    } else if(inputType==='email'){
-        setEmail(inputValue)
-    } else if(inputType==='password'){
-        setPassword(inputValue)
+    
+    if( name === 'userName' ){
+        setUsername(value)
+    } else if( name === 'email' ){
+        setEmail(value)
+    } else if( name === 'password' ){
+        setPassword(value)
     }
-    
-    
-    
+   
   };
 
-  const handleFormSubmit = (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
+  const handleFormSubmit =  (e) => {
     e.preventDefault();
 
     const body = {
-        firstName: firstName,
-        lastName: lastName,
+        userName: userName,
         email: email,
         password: password
     }
     console.log(body)
-    // Alert the user their first and last name, clear the inputs
-    alert(`Hello ${firstName} ${lastName} ${email} ${password}`);
+
+    try {
+        const { data } =  addUser({
+            variables: { userName, email, password }
+        })
+        window.location.reload();
+    }
+    catch (err) {
+        console.error(err);
+    }
+    
    
   };
 
@@ -50,17 +55,21 @@ const handleInputChange = (e) => {
                 <h5 className='card-title'>Sign Up</h5>
             <form id="logInForm">
             <div className="form-group">
-                    <label for="exampleInputEmail1">First Name</label>
-                    <input type="text" className="form-control" name='firstName' id="firstName" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
+                    <label for="userName">Username</label>
+                    <input type="text" className="form-control" name='userName' id="userName" aria-describedby="userNameHelp" onChange={handleInputChange} placeholder="Enter Username"/>
                 </div>
                 <div className="form-group">
-                    <label for="exampleInputEmail1">Last Name</label>
-                    <input type="text" className="form-control" name='lastName' id="lastName" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter email"/>
+                    <label for="email">Email</label>
+                    <input type="text" className="form-control" name='email' id="email" aria-describedby="emailHelp" onChange={handleInputChange} placeholder="Enter Email"/>
+                </div>
+                <div className="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" className="form-control" name='password' id="password" aria-describedby="passwordHelp" onChange={handleInputChange} placeholder="Enter Password"/>
                 </div>
                 <div className="form-check">
 
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleFormSubmit}>Submit</button>
+                <button type="submit" className="btn btn-primary" onClick={handleFormSubmit}>Create!</button>
             </form>
             </div>
         </div>     
