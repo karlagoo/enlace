@@ -10,17 +10,14 @@ const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
 const handleInputChange = (e) => {
-    // Getting the value and name of the input which triggered the change
     const { name, value } = e.target;
     console.log(name);
     console.log(value);
 
-    // Ternary statement that will call either setFirstName or setLastName based on what field the user is typing in
     return name === 'email' ? setEmail(value) : setPassword(value);
   };
 
   const handleFormSubmit = (e) => {
-    // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
 
     const body = {
@@ -30,16 +27,14 @@ const handleInputChange = (e) => {
     console.log(body)
     try{
         const { data } = userLogIn({
-            variables: { body },
+            variables: { email, password },
         });
+        console.log(data)
         
-
     }
     catch(err){
         console.log(err);
     }
-    // Alert the user their first and last name, clear the inputs
-    alert(`Hello ${email} ${password}`);
    
   };
 
