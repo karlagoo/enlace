@@ -23,6 +23,7 @@ function App() {
       {/* Wrap page elements in Router component to keep track of location state */}
       <Router>
         <div className="flex-column justify-flex-start min-100-vh">
+          <Navbar />
           <Header />
           <div className="container">
             {/* Define routes to render different page components at different paths */}
@@ -30,11 +31,6 @@ function App() {
             {/* Define a route that will take in variable data */}
             <Route exact path="/profiles/" component={Profile} />
             <Route exact path="/aboutus/" component={AboutUs}/>
-
-            {/* Import Navbar test - Jess */}
-            <Router>
-            <Navbar />
-            </Router>
 
           </div>
           <Footer />
