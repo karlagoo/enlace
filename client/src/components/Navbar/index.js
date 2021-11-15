@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements';
+import { Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink } from './NavbarElements';
 
 
 const Navbar = () => {
@@ -14,18 +14,18 @@ const Navbar = () => {
                 </NavLink>
                 <Bars />
                 <NavMenu>
-                    <NavLink to="/about" activeStyle>
-                        About
-                    </NavLink>
                     <NavLink to="/profile" activeStyle>
                         Profile
+                    </NavLink>
+                    <NavLink to="/about-us" activeStyle>
+                        About Us
                     </NavLink>
                     {/* Add more navlinks */}
 
                 </NavMenu>
-            <NavBtn>
-            <NavBtnLink to="/signin">Sign In</NavBtnLink>
-            </NavBtn>
+                <NavBtn>
+                    <NavBtnLink to="/signin">Sign In</NavBtnLink>
+                </NavBtn>
             </Nav>
         </>
     );
