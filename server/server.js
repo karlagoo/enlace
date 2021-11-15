@@ -6,13 +6,21 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 
+
 const PORT = process.env.PORT || 3001;
 const app = express();
+const httpServer = require('http').createServer(app);
 
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+});
+
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "*",
+  },
 });
 
 server.applyMiddleware({ app });
@@ -28,8 +36,15 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
+io.on('connection', (socket) => {
+  console.log('a user connected', socket.id);
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
 db.once('open', () => {
-  app.listen(PORT, () => {
+  httpServer.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
   });
