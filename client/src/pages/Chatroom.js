@@ -1,6 +1,6 @@
 import React, {useState, useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
-// import { Form, Button } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 
 
 //const socket = io.connect('http://localhost:3001')
