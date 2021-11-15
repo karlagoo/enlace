@@ -26,8 +26,10 @@ export const CREATE_EVENT = gql`
 export const USER_LOGIN = gql`
   mutation ($email: String!, $password: String!){
     login(email: $email, password: $password){
-      email
-      password
+      user{
+        email
+        password
+    }
     }
   }
 `;

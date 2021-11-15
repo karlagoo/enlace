@@ -9,8 +9,7 @@ const resolvers = {
     },
 
     event: async (parent, { title }) => {
-      const params = title ? { title } : {};
-      return Event.find(params).sort({ createdAt: -1 });
+      return Event.findOne( { title: title } )
     },
 
     me: async (parent, args, context) => {
