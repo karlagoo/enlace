@@ -1,10 +1,12 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import AboutUs from './pages/AboutUs';
+import Chatroom from './pages/Chatroom';
 
 // import Navbar - Jess
 import Navbar from './components/Navbar';
@@ -30,7 +32,7 @@ function App() {
             {/* Define a route that will take in variable data */}
             <Route exact path="/profiles/" component={Profile} />
             <Route exact path="/aboutus/" component={AboutUs}/>
-
+            <Route exact path="/chatroom/" component={Chatroom}/>
             {/* Import Navbar test - Jess */}
             
      
