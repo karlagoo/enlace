@@ -8,4 +8,4 @@ const InviteBtn = () => {
     )
 }
 
-export default InviteBtn
+export default InviteBtn;
