@@ -1,6 +1,6 @@
 import React from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -17,15 +17,17 @@ function App() {
     <ApolloProvider client={client}>
       {/* Wrap page elements in Router component to keep track of location state */}
       <Router>
+        <Switch>
         <div className="flex-column justify-flex-start min-100-vh">
           <div className="container">
             {/* Define routes to render different page components at different paths */}
             <Route exact path="/" component={Home} />
             {/* Define a route that will take in variable data */}
-            <Route exact path="/profiles/" component={Profile} />
-            <Route exact path="/aboutus/" component={AboutUs}/>
+            <Route exact path="/profiles" component={Profile} />
+            <Route exact path="/aboutus" component={AboutUs}/>
           </div>
         </div>
+        </Switch>
       </Router>
     </ApolloProvider>
   );
