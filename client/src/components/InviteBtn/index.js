@@ -1,9 +1,15 @@
-import React from 'react'
+import {useState} from 'react'
+import InviteModal from '../InviteModal'
 
 const InviteBtn = () => {
+    const [show, setShow]=useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <div>
-            <button className='btn btn-primary btn-lg'>Invite</button>
+            <InviteModal show={show} handleClose={handleClose}/>
+           <InviteBtn onClick={handleShow}/>
         </div>
     )
 }
