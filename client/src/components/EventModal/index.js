@@ -11,7 +11,7 @@ const EventModal = (props) => {
 
 
       <Modal show={props.show} >
-        <Modal.Header closeButton>
+        <Modal.Header closeButton onClick={props.handleClose}>
           <Modal.Title>{props.passThrough.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body><ul><li>{props.passThrough.date}</li><li>{props.passThrough.desc}</li></ul></Modal.Body>
