@@ -34,9 +34,8 @@ function App() {
             <Route exact path="/aboutus/" component={AboutUs}/>
             <Route exact path="/chatroom/" component={Chatroom}/>
             {/* Import Navbar test - Jess */}
-            <Router>
-            <Navbar />
-            </Router>
+            
+     
 
           </div>
           <Footer />

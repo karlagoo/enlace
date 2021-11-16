@@ -5,6 +5,7 @@ import InviteBtn from '../components/InviteBtn'
 import PenInvs from '../components/PenInvs'
 import PersonalInfo from '../components/PersonalInfo'
 
+
 const Profile = () => {
   return (
     <div>
