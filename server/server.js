@@ -36,12 +36,22 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-io.on('connection', (socket) => {
+io.on('connection', socket => {
   console.log('a user connected', socket.id);
+  socket.on('message', ({ message }) => {
+    io.emit('message', { message })
+  })
   socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-});
+        console.log('user disconnected');
+      });
+})
+
+// io.on('connection', (socket) => {
+//   console.log('a user connected', socket.id);
+//   socket.on('disconnect', () => {
+//     console.log('user disconnected');
+//   });
+// });
 
 db.once('open', () => {
   httpServer.listen(PORT, () => {
