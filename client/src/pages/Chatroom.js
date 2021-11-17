@@ -3,8 +3,8 @@ import io from 'socket.io-client';
 import { Form, Row, InputGroup, FormControl } from 'react-bootstrap';
 import { render } from '@fullcalendar/common';
 
-
-const ENDPOINT = 'http://127.0.0.1:3001';
+const PORT = process.env.PORT || 3001;
+const ENDPOINT = `http://127.0.0.1:${PORT}`;
 
 
 function Chatroom() {
