@@ -63,7 +63,7 @@ const InviteBtn = () => {
     return (
         <div>
             {/* <InviteModal show={show} handleClose={handleClose}/> */}
-            <Button variant='primary' onClick={handleShow}>New Event</Button>
+            <Button variant='primary' className="col-12" onClick={handleShow}>New Event</Button>
             <Modal show={show}>
                 <Modal.Header closeButton onClick={handleClose}>
                     <Modal.Title>New Event</Modal.Title>

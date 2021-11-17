@@ -28,7 +28,8 @@ const typeDefs = gql`
     user(email: String!): User
     event(title: String!): Event
     events:[Event]
-    me: User
+    pendingInvites(_id: ID!): User
+    plannedEvents(_id: ID!): User
   }
 
   type Mutation {

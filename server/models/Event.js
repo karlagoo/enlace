@@ -21,6 +21,10 @@ const eventSchema = new Schema({
         required: true,
 
     },
+    createdBy: {
+        type: String,
+        required: true
+    },
     users: [
         {
             type: Schema.Types.ObjectId,

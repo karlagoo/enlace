@@ -17,13 +17,20 @@ const resolvers = {
       return await Event.find();
     },
 
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-        
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    pendingInvites: async (parent, { _id }, context) => {
+      const pending = await User.findOne({ _id: _id }).populate('pendingInvites');
+
+      console.log(_id)
+      return pending;
     },
+
+    plannedEvents:  async (parent, { _id }, context) => {
+      const planned =  await User.findOne({ _id: _id }).populate('plannedEvents');
+  
+      console.log(_id)
+      return planned;
+    },
+
   },
   
 
