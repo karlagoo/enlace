@@ -29,37 +29,56 @@ const Footer = () => {
                 </FooterLinkItems>
                 <FooterLinkItems>
                   <FooterLinkTitle>Contact Us</FooterLinkTitle>
-                    <FooterLink to='/'>Contact</FooterLink>
-                    <FooterLink to='/'>GitHub</FooterLink>
+                  
                 </FooterLinkItems>
               </FooterLinksWrapper>
             </FooterLinksContainer>
             <SocialMedia>
               <SocialMediaWrap>
+              <SocialIcons>
+                <SocialIconLink
+                target='_blank'
+                aria-label='Github'
+                href='https://github.com/Mheer91'
+              >Michael Heer
+                <Icon />
+              </SocialIconLink>
+              <SocialIconLink
+                target='_blank'
+                aria-label='Github'
+                href='https://github.com/karlagoo'
+              >Karla Goo
+                <Icon />
+              </SocialIconLink>
+              <SocialIconLink
+                target='_blank'
+                aria-label='Github'
+                href='https://github.com/micahwaweru'
+              >Micah Waweru
+                <Icon />
+              </SocialIconLink>
+              <SocialIconLink
+                target='_blank'
+                aria-label='Github'
+                href='https://github.com/Whit1JL'
+              >Jessica White
+                <Icon />
+              </SocialIconLink>
+              <SocialIconLink
+                target='_blank'aria-label='Github' href='https://github.com/Enlace-Team1/enlace'>Enlace GitHub Repository<Icon />
+              </SocialIconLink>
+              </SocialIcons>
+
+            <br></br>
               <SocialLogo to='/' onClick={toggleHome}>
                 Enlace
               </SocialLogo>
-              <WebsiteRights>Enlace  &copy; {new Date().getFullYear()} - Michael Heer, Karla Goo, Micah Waweru, and Jessica White
+              <WebsiteRights>ENLACE  &copy; {new Date().getFullYear()} - Michael Heer, Karla Goo, Micah Waweru, and Jessica White
                 </WebsiteRights>
-              <SocialIcons>
-                <SocialIconLink href='/' target='_blank' aria-label='GitHub'>
-                  <Icon />
-                </SocialIconLink>
-              </SocialIcons>
               </SocialMediaWrap>
             </SocialMedia>
           </FooterWrap>
         </FooterContainer> 
-        {/* {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
-            // Go back to the previous page in our browser's history
-            onClick={() => history.goBack()}
-          >
-            &larr; Go Back
-          </button>
-        )}
-        <h4>&copy; {new Date().getFullYear()} - Michael Heer, Karla Goo, Micah Waweru, and Jessica White</h4> */}
       </div>
     </footer>
   );
