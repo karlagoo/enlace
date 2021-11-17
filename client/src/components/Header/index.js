@@ -8,13 +8,13 @@ const Header = () => {
       <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
         {/* Use Link component to create a link that returns to the homepage on click */}
         <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            ENLACE
+          <h1 className="m-0" style={{ fontSize: '3rem' }} text-decoration='none'>
+            ENLACE (verb)
           </h1>
         </Link>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Taking the stress out of planning fun
-        </p>
+        {/* <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
+          definition
+        </p> */}
       </div>
     </header>
   );
