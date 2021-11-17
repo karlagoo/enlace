@@ -1,36 +1,31 @@
 import React, { useState } from 'react'
 import { useMutation, useQuery } from '@apollo/client';
 import { USER_LOGIN } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 const LogIn = () => {
 
 const [userLogIn, { error }] = useMutation(USER_LOGIN);
-
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
 
 const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name);
-    console.log(value);
 
     return name === 'email' ? setEmail(value) : setPassword(value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const body = {
-        email: email,
-        password: password
-    }
-    console.log(body)
     try{
-        const { data } = userLogIn({
-            variables: { email, password },
+        const response  = await userLogIn({
+            variables: { email: email, password: password },
         });
-        console.log(data)
-        
+
+        const token = response.data.login.token;
+        Auth.login(token);
+     
     }
     catch(err){
         console.log(err);
