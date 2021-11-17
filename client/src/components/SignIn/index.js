@@ -77,4 +77,4 @@ const handleInputChange = (e) => {
     )
 }
 
-export default SignUp
+export default SignUp;
