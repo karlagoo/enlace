@@ -27,6 +27,7 @@ const typeDefs = gql`
   type Query {
     user(email: String!): User
     event(title: String!): Event
+    events:[Event]
     me: User
   }
 

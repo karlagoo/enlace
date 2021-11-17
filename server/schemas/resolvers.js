@@ -12,6 +12,11 @@ const resolvers = {
       return Event.findOne( { title: title } )
     },
 
+
+    events: async()=>{
+      return await Event.find();
+    },
+
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id });
