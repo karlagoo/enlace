@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import { Button } from "../ButtonElements";
 
-// import Video from '...';
+import Video from '../../video/video.mp4';
 import  {
     HeroContainer,
     HeroBg,
-    // VideoBg,
+    VideoBg,
     HeroContent,
     HeroH1,
     HeroP,
@@ -23,12 +23,14 @@ import  {
     return (
       <HeroContainer id='home'>
         <HeroBg>
-          {/* <VideoBg playsInline autoPlay loop muted src={Video} type='video/mp4' /> */}
+          <VideoBg playsInline autoPlay loop muted src={Video} type='video/mp4' />
         </HeroBg>
         <HeroContent>
-          <HeroH1>Scheduling Made Easy</HeroH1>
+          <HeroH1>ENLACE</HeroH1>
           <HeroP>
-            Sign up and create a profile today.
+            In Spanish, enlace simply translates to link, bond, and connect. 
+
+            Our website provides users with ...
           </HeroP>
           <HeroBtnWrapper>
             <Button
