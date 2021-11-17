@@ -5,16 +5,27 @@ import EventModal from '../EventModal'
 
 import { useQuery } from '@apollo/client'
 import { QUERY_EVENTS } from '../../utils/queries'
+import { QUERY_EVENT } from '../../utils/queries'
 const dayjs = require('dayjs')
 
+//console.log(document.querySelector('.fc-event-title'))
 
 const Calendar = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (e) => {
+     
+      setEvent(
+        e.event._def
+      )
+    
+    setShow(true)
+  };
   
   const { data, error } = useQuery(QUERY_EVENTS)
+ 
+  const [currentEvent, setEvent] = useState({});
 
   // const event = data?.event || {} ;
   // console.log(dayjs(event.date).format('YYYY-MM-DD'))
@@ -27,15 +38,23 @@ const Calendar = () => {
   //   show: false
 
   // }
+  console.log(data);
+
 
     return (
+
       <div>
-        {/* <EventModal passThrough={data} show={show} handleClose={handleClose} /> */}
+        {/* {data.events.map((event)=>(<EventModal passThrough={data} show={show} handleClose={handleClose} />))} */}
+        <EventModal show={show} handleClose={handleClose} pass={currentEvent} />
         <FullCalendar
         plugins={[ dayGridPlugin ]}
         initialView="dayGridMonth"
         events={data}
-        // eventClick={handleShow}
+        eventClick={(e)=>{
+          handleShow(e)
+        }}
+        
+        
       />
       
       </div>
