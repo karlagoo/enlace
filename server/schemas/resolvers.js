@@ -60,22 +60,25 @@ const resolvers = {
       return { token, user };
     },
 
-    addEvent: async (parent, { title, date, time, description }, context) => {
-      const event = await Event.create({title, date, time, description,});
-      if(context.user){
-         return User.findOneAndUpdate(
-          {_id: context.user._id},
-          {
-            $push:  {plannedEvents: event._id}
-          },
-          {
-            new: true,
-            runValidators: true
-          }
-        )
-      }
-      console.log(context.user)
+    addEvent: async (parent, { title, date, time, description }) => {
+      const event = await Event.create({title, date, time, description});
+     
       return event ;
+    },
+
+    updatePlanned: async (parent, { email, _id }) => {
+      console.log(_id)
+      const update = await User.findOneAndUpdate(
+        {email: email},
+        {
+          $push:  {plannedEvents: _id}
+        },
+        {
+          new: true,
+          runValidators: true
+        }
+      )
+      return update;
     },
 
 
