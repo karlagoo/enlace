@@ -38,4 +38,25 @@ export const QUERY_EVENTS = gql`
       _id
 
     }
-  }`
+  }
+  `;
+
+  export const QUERY_CHATROOM = gql`
+  query getChatroom($title:String!){
+    chatroom(title:$title){
+      roomName
+      messages{
+        message
+      }
+    }
+  }`;
+
+  export const QUERY_CHAT_MESSAGES = gql`
+  query chatroomMessages($roomName:String!){
+    chatroomMessages(roomName:$roomName){
+      roomName
+      message
+      timeStamp
+      sender
+    }
+  }`;

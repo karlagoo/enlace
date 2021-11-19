@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Event, User } = require('../models');
+const { Event, User, Chat, Message } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -24,8 +24,16 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+
+    chatroom: async(parent, {title})=>{
+      return Chat.findOne({roomName:title}).populate('messages')
+    },
+
+     chatroomMessages: async (parent, {roomName}) =>{
+       return await Message.find({roomName:{$in:roomName}})
+     }
   },
-  
+
 
   Mutation: {
     addUser: async (parent, { userName, email, password }) => {
@@ -71,6 +79,32 @@ const resolvers = {
       return event ;
     },
 
+    createChatroom: async (parent, {title})=>{
+      const addRoom = await Chat.create({roomName: title});
+
+      console.log(addRoom)
+      return addRoom ;
+    },
+
+    updateChat: async (parent, {title, message})=>{
+      const updateChat = await Chat.findOneAndUpdate(
+        {roomName:title},
+        {
+          $push:{messages:message}
+        },
+        {
+          new: true,
+          runValidators: true
+        }
+      )
+      return updateChat
+    },
+
+    addMessage: async (parent, {message, sender, roomName})=>{
+      const newMessage = await Message.create({message, sender, roomName});
+      
+      return newMessage
+    },
 
     removeEvent: async (parent, { _id }) => {
       console.log(_id)
