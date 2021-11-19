@@ -43,6 +43,7 @@ const InviteBtn = () => {
 
 
             console.log(createEvent)
+            handleClose();
         }
         catch (err) {
             console.log(err)
@@ -99,11 +100,6 @@ const InviteBtn = () => {
                             <Form.Label>Event Time</Form.Label>
                             <Form.Control type='text' rows={3} placeholder='3:33pm' title="time" onChange={handleFormChange} />
                             <Form.Text className='text-muted'>Time Here</Form.Text>
-                        </Form.Group>
-
-                        <Form.Group className='mb-3' controlId='usersByEmail'>
-                            <Form.Label>Add users by Email</Form.Label>
-                            <Form.Control type='email' placeholder='tom@fun.com' onChange={handleFormChange}></Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

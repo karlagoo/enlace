@@ -26,7 +26,7 @@ const resolvers = {
     },
 
     pendingInvites: async (parent, { _id }, context) => {
-      const pending = await User.findOne({ _id: _id }).populate('pendingInvites');
+      const pending = await User.findOne({ _id: _id }).populate({path: 'pendingInvites'});
 
       console.log(_id)
       return pending;

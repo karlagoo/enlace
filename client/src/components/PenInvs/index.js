@@ -84,9 +84,10 @@ const PenInvs = () => {
                             <div>Invited by:</div>
                             <Button onClick={acceptInvite} id={event._id}>Accept Event Invite</Button>
                             <Button onClick={declinePending} id={event._id}>Decline Event Invite</Button>
+                            <Button onClick={() => console.log(data)} id={event._id}>Decline Event Invite</Button>
                         </div>
                         <Badge variant="primary" pill>
-                            14 people attending
+                            {event.date} people attending
                         </Badge>
                     </ListGroup.Item>
                 </ListGroup>))}
