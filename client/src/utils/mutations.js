@@ -55,6 +55,33 @@ export const DELETE_USER = gql`
   }
 `;
 
+
+export const CREATE_MESSAGE = gql`
+mutation ($message:String!, $sender:String!, $roomName:String!){
+  addMessage (message:$message, sender:$sender, roomName:$roomName){
+    message
+    sender
+    roomName
+  }
+}
+`;
+
+export const CREATE_CHATROOM = gql`
+mutation($roomName:String!,$roomId:String!){
+  createChatroom(roomName:$roomName, roomId:$roomId){
+    roomName
+    roomId
+  }
+}
+`;
+
+export const UPDATE_CHATROOM = gql`
+mutation updateChat($title:String!, $message:[ID]!){
+  updateChat(title:$title, message:$message){
+    roomName
+  }
+}`;
+=======
 export const UPDATE_EVENT_USER = gql`
  mutation updateEvent($userId: [ID]!, $_id: ID!){
     updateEventUsers(userId: $userId, _id: $_id){
@@ -88,3 +115,4 @@ mutation declineInvite($email: String!, $_id:ID!){
   }
 }
 `;
+

@@ -37,7 +37,7 @@ query getAllUsers{
       description
     }
   }
-}`
+}`;
 
 export const QUERY_EVENT = gql`
   query getEvent($title: String!){
@@ -94,4 +94,25 @@ query acceptedEvents($_id: ID!) {
       time
     }
   }
-}`;
+ `;
+
+  export const QUERY_CHATROOM = gql`
+  query getChatroom($title:String!){
+    chatroom(title:$title){
+      roomName
+      messages{
+        message
+      }
+    }
+  }`;
+
+  export const QUERY_CHAT_MESSAGES = gql`
+  query chatroomMessages($roomName:String!){
+    chatroomMessages(roomName:$roomName){
+      roomName
+      message
+      timeStamp
+      sender
+    }
+  }`;
+
