@@ -1,12 +1,16 @@
-import {useState} from 'react'
+import { useState } from 'react'
 import { Form, Modal, Button } from 'react-bootstrap'
-import { useMutation } from '@apollo/client';
-import { CREATE_EVENT } from '../../utils/mutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { CREATE_EVENT, UPDATE_PLANNED } from '../../utils/mutations';
 import Auth from '../../utils/auth';
-//import InviteModal from '../InviteModal'
 
 const InviteBtn = () => {
+    const userToken = Auth.getToken();
+    const userInfo = Auth.getUserInfo(userToken);
+    const userId = userInfo.data._id
+
     const [addEvent, { error }] = useMutation(CREATE_EVENT);
+
 
     const [eventState, setEventState] = useState(
         {
@@ -16,7 +20,7 @@ const InviteBtn = () => {
             time: '',
         }
     )
-    const [show, setShow]=useState(false);
+    const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -26,17 +30,20 @@ const InviteBtn = () => {
         try {
             const createEvent = await addEvent(
                 {
-                    variables: 
+                    variables:
                     {
                         title: eventState.title,
                         description: eventState.description,
                         date: eventState.date,
                         time: eventState.time,
+                        users: [userId]
                     }
                 }
             )
 
+
             console.log(createEvent)
+            handleClose();
         }
         catch (err) {
             console.log(err)
@@ -45,25 +52,26 @@ const InviteBtn = () => {
     }
 
 
-    const handleFormChange =  (event) => {
 
-        const {title, value} = event.target;
+    const handleFormChange = (event) => {
+
+        const { title, value } = event.target;
 
         setEventState({
             ...eventState,
             [title]: value,
         })
+        console.log(eventState)
 
-        
     };
-    
+
 
 
 
     return (
         <div>
             {/* <InviteModal show={show} handleClose={handleClose}/> */}
-            <Button variant='primary' onClick={handleShow}>New Event</Button>
+            <Button variant='primary' className="col-12" onClick={handleShow}>New Event</Button>
             <Modal show={show}>
                 <Modal.Header closeButton onClick={handleClose}>
                     <Modal.Title>New Event</Modal.Title>
@@ -72,7 +80,7 @@ const InviteBtn = () => {
                     <Form>
                         <Form.Group className='mb-3' controlId='eventTitle'>
                             <Form.Label>Event Name</Form.Label>
-                            <Form.Control type='text' placeholder='My party' title="title" onChange={handleFormChange}/>
+                            <Form.Control type='text' placeholder='My party' title="title" onChange={handleFormChange} />
                             <Form.Text className='text-muted' >Title Here</Form.Text>
                         </Form.Group>
 
@@ -84,19 +92,14 @@ const InviteBtn = () => {
 
                         <Form.Group className='mb-3' controlId='eventDesc'>
                             <Form.Label>Event Description</Form.Label>
-                            <Form.Control type='textarea' rows={3} placeholder='My party is lit' title="description" onChange={handleFormChange}/>
+                            <Form.Control type='textarea' rows={3} placeholder='My party is lit' title="description" onChange={handleFormChange} />
                             <Form.Text className='text-muted'>Description Here</Form.Text>
                         </Form.Group>
 
                         <Form.Group className='mb-3' controlId='eventTime'>
                             <Form.Label>Event Time</Form.Label>
-                            <Form.Control type='text' rows={3} placeholder='3:33pm' title="time" onChange={handleFormChange}/>
+                            <Form.Control type='text' rows={3} placeholder='3:33pm' title="time" onChange={handleFormChange} />
                             <Form.Text className='text-muted'>Time Here</Form.Text>
-                        </Form.Group>
-
-                        <Form.Group className='mb-3' controlId='usersByEmail'>
-                            <Form.Label>Add users by Email</Form.Label>
-                            <Form.Control type='email' placeholder='tom@fun.com'  onChange={handleFormChange}></Form.Control>
                         </Form.Group>
                     </Form>
                 </Modal.Body>

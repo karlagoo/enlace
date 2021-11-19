@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const UserInfo = () => {
     return (
@@ -9,4 +9,4 @@ const UserInfo = () => {
     )
 }
 
-export default UserInfo 
+export default UserInfo;
