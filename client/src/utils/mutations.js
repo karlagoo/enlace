@@ -81,7 +81,7 @@ mutation updateChat($title:String!, $message:[ID]!){
     roomName
   }
 }`;
-=======
+
 export const UPDATE_EVENT_USER = gql`
  mutation updateEvent($userId: [ID]!, $_id: ID!){
     updateEventUsers(userId: $userId, _id: $_id){
