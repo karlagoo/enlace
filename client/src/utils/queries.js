@@ -13,6 +13,32 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_USERS = gql`
+query getUsersByEmail($email: [String]!){
+  users(email:$email){
+    userName
+    _id
+    email
+  }
+}
+`;
+
+export const QUERY_ALL_USERS = gql`
+query getAllUsers{
+  allUsers{
+    userName
+    _id
+    email
+    pendingInvites{
+      _id
+      title
+      time
+      date
+      description
+    }
+  }
+}`
+
 export const QUERY_EVENT = gql`
   query getEvent($title: String!){
     event(title: $title){
@@ -29,16 +55,20 @@ export const QUERY_EVENT = gql`
 `;
 
 export const QUERY_EVENTS = gql`
-  query getEvents{
-    events{
-      title
-      description
-      date
-      time
+ query getEvents($_id:ID!){
+  events(_id:$_id){
+		_id
+    title
+    description
+    time
+    date
+    users {
       _id
-
+      userName
+      email
     }
-  }`;
+  }
+}`;
 
 export const QUERY_PENDING = gql`
 query pendingEvents($_id: ID!) {

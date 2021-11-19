@@ -7,6 +7,7 @@ import PersonalInfo from '../components/PersonalInfo';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { Container } from 'react-bootstrap';
+import Footer from '../components/Footer/index'
 
 
 const Profile = () => {
@@ -17,6 +18,7 @@ const Profile = () => {
       <PersonalInfo />
       <Calendar></Calendar>
       <PenInvs />
+      <Footer />
     </Container>
 
 

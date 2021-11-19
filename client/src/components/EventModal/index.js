@@ -1,37 +1,112 @@
 import { useState } from 'react'
-import { Button, Modal } from 'react-bootstrap'
- 
+import { Button, Modal, Form, ListGroup } from 'react-bootstrap'
+import { QUERY_ALL_USERS } from '../../utils/queries';
+import { useMutation, useQuery } from '@apollo/client';
+import { UPDATE_PENDING } from '../../utils/mutations';
+
 
 const EventModal = (props) => {
-  
- if(props.show){
-   console.log(props.pass);
- 
+
+  const [userState, setUserState] = useState([
+    {
+      id: ''
+    }
+  ]);
+
+  const { data } = useQuery(QUERY_ALL_USERS)
+  const [updateUsers, { error }] = useMutation(UPDATE_PENDING)
+
+
+
+  const invite =  (e) => {
+    e.preventDefault();
+    console.log(userState)
+    const eventId = e.target.id;
+    console.log("test invite", eventId, userState)
+
+    try {
+      userState.forEach((user) => {
+        console.log(eventId, user)
+        const update = updateUsers(
+          {
+            variables:
+            {
+              _id: eventId,
+              userId: user
+            }
+          }
+        )
+      })    
+    }
+    catch (err) {
+      console.log(err)
+    }
+
+
+    props.handleClose();
+  };
+
+  const handleFormSelect = (e) => {
+    e.preventDefault();
+
+    setUserState([].slice.call(e.target.selectedOptions).map((user) => user.value))
+
+  }
+
+
+
+  if (props.show) {
+    console.log(props.pass);
+
     return (
-<>
+      <>
 
-<div>
+        <div>
 
-  <Modal show={props.show} >
-        <Modal.Header closeButton onClick={props.handleClose}>
-          <Modal.Title>{props.pass.title}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body><ul><li>{props.pass.extendedProps.description}</li><li>{props.pass.extendedProps.time}</li></ul></Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={props.handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>))
+          <Modal show={props.show} >
+            <Modal.Header closeButton onClick={props.handleClose}>
+              <Modal.Title>{props.pass.title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <ListGroup>
+                <ListGroup.Item>Time:{props.pass.extendedProps.time}</ListGroup.Item>
+                <ListGroup.Item>Description:</ListGroup.Item>
+                <ListGroup.Item><p>{props.pass.extendedProps.description}</p></ListGroup.Item>
+                <ListGroup.Item>Attendees:</ListGroup.Item>
+                <ListGroup.Item>
+                  <ul>
+                    {props.pass.extendedProps.users.map((user) =>
+                      <li key={user._id}>{user.userName}</li>)}
+                  </ul>
+                </ListGroup.Item>
+              </ListGroup>
+            </Modal.Body>
+            <Form.Group controlId="my_multiselect_field">
+              <Form.Label>Select Users to Invite</Form.Label>
+              <Form.Control as="select" multiple onChange={handleFormSelect}>
+                {data.allUsers.map((user) =>
+                  <option key={user._id} value={user._id}>{user.userName}</option>
+                )}
+              </Form.Control>
+              <Form.Text className="text-muted">
+                Hold CTRL and click user names to select multiple users.
+              </Form.Text>
+            </Form.Group>
+            <Modal.Footer>
+              <Button variant="secondary" id={props.pass.extendedProps._id} onClick={invite} >
+                Invite
+              </Button>
+            </Modal.Footer>
+          </Modal>))
 
 
-</div>
-</>
+        </div>
+      </>
     )
-}
-else{
-  return null;
-}
+  }
+  else {
+    return null;
+  }
 }
 
 export default EventModal
