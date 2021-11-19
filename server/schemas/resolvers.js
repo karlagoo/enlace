@@ -91,11 +91,6 @@ const resolvers = {
       return addRoom ;
     },
 
-    updateChat: async (parent, {title, message})=>{
-      const updateChat = await Chat.findOneAndUpdate(
-        {roomName:title},
-        {
-          $push:{messages:message}
 
     updateEventUsers: async (parent, { userId, _id }) => {
       const update = await Event.findOneAndUpdate(
@@ -123,7 +118,7 @@ const resolvers = {
         }
       )
 
-      return updateChat
+      return decline
     },
 
     addMessage: async (parent, {message, sender, roomName})=>{
@@ -132,8 +127,7 @@ const resolvers = {
       return newMessage
     },
 
-      return decline;
-    },
+    
 
     sendInvite: async (parent, { userId, _id }) => {
       const send = await User.findOneAndUpdate(

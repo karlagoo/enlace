@@ -83,18 +83,6 @@ query pendingEvents($_id: ID!) {
   }
 }`;
 
-export const QUERY_ACCEPTED = gql`
-query acceptedEvents($_id: ID!) {
-  plannedEvents(_id: $_id) {
-    plannedEvents{
-      _id
-      title
-      description
-      date
-      time
-    }
-  }
- `;
 
   export const QUERY_CHATROOM = gql`
   query getChatroom($title:String!){
