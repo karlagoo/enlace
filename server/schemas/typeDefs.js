@@ -26,17 +26,23 @@ const typeDefs = gql`
   
   type Query {
     user(email: String!): User
+    users(email: [String]!): [User]
+    allUsers: [User]
     event(title: String!): Event
-    events:[Event]
-    me: User
+    events(_id: ID!):[Event]
+    pendingInvites(_id: ID!): User
+    plannedEvents(_id: ID!): User
   }
 
   type Mutation {
     addUser(userName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addEvent(title: String!, date: String!, time: String!, description: String!): Event
+    addEvent(title: String!, date: String!, time: String!, description: String!, users: [ID]!): Event
+    updateEventUsers(userId: [ID]!, _id: ID!): Event
+    declineInvite(_id: ID!, email: String!): User
     removeEvent(_id: ID!): [Event]
     removeUser: User
+    sendInvite(userId: ID!, _id: ID!): User
   }
 `;
 
