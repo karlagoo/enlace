@@ -45,8 +45,6 @@ const Calendar = () => {
     })
     // console.log(datas.chatroom)
   }
-  
-  const { data, error } = useQuery(QUERY_EVENTS)
  
   const [currentEvent, setEvent] = useState({});
 
