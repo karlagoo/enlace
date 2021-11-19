@@ -8,8 +8,9 @@ export const homeObjOne = {
     description:
       'Get access to our top-tier website that allows you to schedule events with your friends and family with no hassle.',
     buttonLabel: 'Get Started',
+    href: () => window.location.assign('/login'),
     imgStart: false,
-    img: require('../images/link.jpg'),
+    img: require('../images/link.jpg').default,
     alt: 'Link',
     dark: true,
     primary: true,
@@ -26,8 +27,9 @@ export const homeObjOne = {
     description:
       'This dynamic team of ambitious coders have designed and built this application from scratch.',
     buttonLabel: 'Learn More',
+    href: () => window.location.assign('/aboutus'),
     imgStart: true,
-    img: require('../images/mother.jpg'),
+    img: require('../images/mother.jpg').default,
     alt: 'MotherBoard',
     dark: false,
     primary: false,
@@ -44,8 +46,9 @@ export const homeObjOne = {
     description:
       "Get everything set up and ready in under 10 minutes. All you need to do is add your information, invite your friends, and you're ready to go.",
     buttonLabel: 'Start Now',
+    href: () => window.location.assign('/login'),
     imgStart: false,
-    // img: require('../../images/svg-3.svg'),
+    img: require('../images/matrix.jpg').default,
     alt: 'Sign Up',
     dark: false,
     primary: false,

@@ -90,24 +90,25 @@ export const SocialLogo = styled(Link)`
   text-decoration: none;
   font-size: 1.5rem;
   display: flex;
-  align-items: center;
-  margin-bottom: 16px;
+  align-items: baseline;
+  margin-bottom: 5px;
   font-weight: bold;
 `;
 
 export const WebsiteRights = styled.small`
   color: #fff;
-  margin-bottom: 16px;
+  margin-bottom: 5px;
+  align-items: baseline;
 `;
 
 export const SocialIcons = styled.div`
-  display: flex;
+  display: inline block;
   justify-content: space-between;
-  align-items: center;
-  width: 240px;
+  /* align-items: center; */
+  width: 119px;
 `;
 
 export const SocialIconLink = styled.a`
   color: #fff;
-  font-size: 24px;
+  font-size: 15px;
 `;

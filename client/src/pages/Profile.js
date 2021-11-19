@@ -6,20 +6,20 @@ import PenInvs from '../components/PenInvs';
 import PersonalInfo from '../components/PersonalInfo';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
+import { Container } from 'react-bootstrap';
+import Footer from '../components/Footer/index'
 
 
 const Profile = () => {
   return (
-    <div>
+    <Container className="justify-space-around">
       <Sidebar />
       <Navbar />
       <PersonalInfo />
-      <UserInfo />
-      <PenInvs />
-      <InviteBtn />
       <Calendar></Calendar>
-
-    </div>
+      <PenInvs />
+      <Footer />
+    </Container>
 
 
   )

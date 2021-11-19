@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import AboutUs from './pages/AboutUs';
 import Chatroom from './pages/Chatroom';
+import LoginPage from './pages/Login';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -28,7 +29,7 @@ function App() {
             <Route exact path="/profiles/" component={Profile} />
             <Route exact path="/aboutus/" component={AboutUs}/>
             <Route exact path="/chatroom/" component={Chatroom}/>
-            {/* Import Navbar test - Jess */}
+            <Route exact path="/login/" component={LoginPage}/>
             
      
 

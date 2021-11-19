@@ -8,22 +8,37 @@ const resolvers = {
       return User.findOne({ email }).populate('events')
     },
 
+    users: async (parent, { email }) => {
+      return User.find({ email: {$in: email } }).populate('events')
+    },
+
+    allUsers: async () => {
+      return User.find({}).populate('pendingInvites')
+    },
+
     event: async (parent, { title }) => {
       return Event.findOne( { title: title } )
     },
 
 
-    events: async()=>{
-      return await Event.find();
+    events: async (parent, { _id })=>{
+      return await Event.find({ users: {$in: [_id]}}).populate('users');
     },
 
-    me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findOne({ _id: context.user._id });
-        
-      }
-      throw new AuthenticationError('You need to be logged in!');
+    pendingInvites: async (parent, { _id }, context) => {
+      const pending = await User.findOne({ _id: _id }).populate('pendingInvites');
+
+      console.log(_id)
+      return pending;
     },
+
+    plannedEvents:  async (parent, { _id }, context) => {
+      const planned =  await User.findOne({ _id: _id }).populate('plannedEvents');
+  
+      console.log(_id)
+      return planned;
+    },
+
 
     chatroom: async(parent, {title})=>{
       return Chat.findOne({roomName:title}).populate('messages')
@@ -32,6 +47,7 @@ const resolvers = {
      chatroomMessages: async (parent, {roomName}) =>{
        return await Message.find({roomName:{$in:roomName}})
      }
+
   },
 
 
@@ -61,23 +77,12 @@ const resolvers = {
       return { token, user };
     },
 
-    addEvent: async (parent, { title, date, time, description }, context) => {
-      const event = await Event.create({title, date, time, description,});
-      if(context.user){
-         return User.findOneAndUpdate(
-          {_id: context.user._id},
-          {
-            $push:  {plannedEvents: event._id}
-          },
-          {
-            new: true,
-            runValidators: true
-          }
-        )
-      }
-      console.log(context.user)
+    addEvent: async (parent, { title, date, time, description, users }) => {
+      const event = await Event.create({title, date, time, description, users});
+     
       return event ;
     },
+
 
     createChatroom: async (parent, {title})=>{
       const addRoom = await Chat.create({roomName: title});
@@ -91,12 +96,33 @@ const resolvers = {
         {roomName:title},
         {
           $push:{messages:message}
+
+    updateEventUsers: async (parent, { userId, _id }) => {
+      const update = await Event.findOneAndUpdate(
+        {_id: _id},
+        {
+          $push:  { users: userId }
         },
         {
           new: true,
           runValidators: true
         }
       )
+      return update;
+    },
+
+    declineInvite: async (parent, { email, _id}) => {
+      const decline = await User.findOneAndUpdate(
+        {email: email},
+        {
+          $pull: { pendingInvites: {$in: [_id]}}
+        },
+        {
+          new: true,
+          runValidators: true
+        }
+      )
+
       return updateChat
     },
 
@@ -105,6 +131,24 @@ const resolvers = {
       
       return newMessage
     },
+
+      return decline;
+    },
+
+    sendInvite: async (parent, { userId, _id }) => {
+      const send = await User.findOneAndUpdate(
+        {_id: userId},
+        {
+          $push: { pendingInvites:  _id}
+        },
+        {
+        new: true,
+        runValidators: true
+        }
+      )
+      return send;
+    },
+
 
     removeEvent: async (parent, { _id }) => {
       console.log(_id)
