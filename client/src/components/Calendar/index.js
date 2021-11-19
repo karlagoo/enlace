@@ -56,7 +56,6 @@ const Calendar = () => {
     });
 
 
-  const [currentEvent, setEvent] = useState({});
 
   console.log(currentEvent)
 
