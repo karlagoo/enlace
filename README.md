@@ -16,6 +16,7 @@ GitHub 🔗: https://github.com/Enlace-Team1/enlace
   * [Technologies](#Technologies)
   * [Contribution](#Contribution)
   * [Tests](#Test)
+  * [License](#License)
   * [Questions](#Questions)
 
 ## Description
@@ -69,6 +70,9 @@ This project was created by four ambitious coding bootcamp students: Karla Goo, 
 ## Tests 
 There are no tests available.
 
+## License
+License is MIT license.
+
 ## Questions 
 If you have any questions, please do not hesitate to reach out to us. 
 
@@ -81,7 +85,6 @@ Micah Waweru: https://github.com/micahwaweru
 Jessica White: https://github.com/Whit1JL
 
 ##Acknowledgements:
-```
-Acknowledgements:
+
 Thank you Rich Hosek, Jessica Parker and Chris Yang for all of your guidance throughout this process. We appreciate you!
-```
+
