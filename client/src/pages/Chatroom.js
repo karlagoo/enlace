@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import { Form, Row, InputGroup, FormControl } from 'react-bootstrap';
+import Sidebar from '../components/Sidebar';
 import { CREATE_MESSAGE } from '../utils/mutations';
 import { QUERY_CHAT_MESSAGES } from '../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-// import { render } from '@fullcalendar/common';
+
 
 const ENDPOINT = process.env.PORT || `http://127.0.0.1:3001`;
 
@@ -29,6 +30,14 @@ function Chatroom(props) {
         roomName: roomTitle
       }
     });
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+
+    
 
   const userToken = Auth.getToken();
   const userInfo = Auth.getUserInfo(userToken);
@@ -85,7 +94,6 @@ function Chatroom(props) {
           }
         }
       )
-      // setState({ message: '' })
       console.log()
     }
     catch (err) {
@@ -93,14 +101,6 @@ function Chatroom(props) {
     }
   };
 
-  // const userNameCheck = (messageSender) => {
-  //     if (userName === messageSender){
-  //       return 
-  //     }
-  //     else {
-
-  //     }
-  // }
 
   const renderMessages = () => {
     return chat.map((message, index) => (
@@ -140,7 +140,8 @@ function Chatroom(props) {
 
   return (
     <>
-      <Navbar />
+       <Sidebar isOpen={isOpen} toggle={toggle} />
+       <Navbar toggle={toggle} />
       <div>
         <hr />
         <h1><span style={{ fontStyle: "italic" }}>{roomTitle}</span> chat:</h1>
