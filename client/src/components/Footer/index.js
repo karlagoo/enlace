@@ -27,7 +27,7 @@ const Footer = () => {
               <FooterLinksWrapper>
                 <FooterLinkItems> 
                   <FooterLinkTitle>About</FooterLinkTitle>
-                  <FooterLink to='/sign-up'>Register</FooterLink>
+                  <FooterLink to='/login'>Register</FooterLink>
                   <FooterLink to='/aboutus'>Meet The Team</FooterLink>
                 </FooterLinkItems>
                 <FooterLinkItems>

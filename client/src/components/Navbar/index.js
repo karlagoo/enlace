@@ -4,9 +4,11 @@ import { IconContext } from 'react-icons/lib';
 import { animateScroll as scroll } from 'react-scroll';
 import logo from '../images/enlace.png';
 import { MobileIcon, Nav, ImgWrap, Img, NavbarContainer, NavItem, NavLinks, NavLogo, NavMenu } from './NavbarElements';
+import Auth from '../../utils/auth'
 
 
 const Navbar = ({ toggle }) => {
+  const loggedIn = Auth.loggedIn();
     const [scrollNav, setScrollNav] = useState(false);
   
     const changeNav = () => {
@@ -48,12 +50,13 @@ const Navbar = ({ toggle }) => {
                   spy={true}
                   exact='true'
                   offset={-80}
+                  onClick={() => window.location.assign('/aboutUs')}
                 >
                   About Us
                 </NavLinks>
               </NavItem>
               
-              <NavItem>
+              <NavItem >
                 <NavLinks
                   to='signup'
                   smooth={true}
@@ -61,8 +64,9 @@ const Navbar = ({ toggle }) => {
                   spy={true}
                   exact='true'
                   offset={-80}
+                  onClick={loggedIn ? () => window.location.assign('/profiles') : () => window.location.assign('/login')}
                 >
-                  Sign Up
+                  {loggedIn ? "Profile" : "Sign In/Sign Up"}
                 </NavLinks>
               </NavItem>
             </NavMenu>
