@@ -102,5 +102,6 @@ query pendingEvents($_id: ID!) {
       timeStamp
       sender
     }
-  }`;
+  }`
+  ;
 

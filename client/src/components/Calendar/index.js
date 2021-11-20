@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'
 import EventModal from '../EventModal'
 
-import {useHistory} from 'react-router-dom';
+
 import { QUERY_EVENTS, QUERY_CHATROOM } from '../../utils/queries'
 import Auth from '../../utils/auth'
 import { useQuery } from '@apollo/client'
@@ -13,18 +13,18 @@ import { Spinner, Button } from 'react-bootstrap'
 
 const Calendar = () => {
 
-  const history = useHistory();
-  const title = 'Grab a coffee';
+  // const history = useHistory();
+  // const title = 'Grab a coffee';
 
   const userToken = Auth.getToken();
   const userInfo = Auth.getUserInfo(userToken);
   const userId = userInfo.data._id
 
   const [show, setShow] = useState(false);
-  const {data:datas} = useQuery(QUERY_CHATROOM,
-    {
-      variables:{title:title}
-    })
+  // const {data:datas} = useQuery(QUERY_CHATROOM,
+  //   {
+  //     variables: { title: title }
+  //   })
   const handleClose = () => setShow(false);
   const handleShow = (e) => {
 
@@ -36,15 +36,15 @@ const Calendar = () => {
   };
 
 
-  const testChat = (e)=>{
-    e.preventDefault();
-    history.push({
-      pathname: '/chatroom',
-      state: {datas}
+  // const testChat = (e)=>{
+  //   e.preventDefault();
+  //   history.push({
+  //     pathname: '/chatroom',
+  //     state: {datas}
       
-    })
-    // console.log(datas.chatroom)
-  }
+  //   })
+  //   // console.log(datas.chatroom)
+  // }
  
   const [currentEvent, setEvent] = useState({});
 
@@ -75,8 +75,8 @@ const Calendar = () => {
           handleShow(e)
         }}  
       />
-
-     <Button onClick={testChat}>testing chatroom</Button>
+{/* 
+     <Button onClick={testChat}>testing chatroom</Button> */}
       
 
       </div>
