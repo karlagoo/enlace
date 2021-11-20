@@ -1,8 +1,9 @@
-# Enlace
+# Enlace ⛓️
 
 ## Deployed Link
-Heroku: https://enlace-thunder-cats.herokuapp.com/
-GitHub: https://github.com/Enlace-Team1/enlace
+Heroku 🔗: https://enlace-thunder-cats.herokuapp.com/
+
+GitHub 🔗: https://github.com/Enlace-Team1/enlace
 
 ## Table of Contents 
 
@@ -23,10 +24,11 @@ In Spanish, enlace simply translates to link, bond, and connect.
 Our website provides users with a top-notch calendar and chatroom to make scheduling events with friends and loved ones easy as 1-2-3.
 
 ## User Story
+```
 The concept was birthed from Micah Waweru. During this coding bootcamp, his fiancée has been asking him to utilize Google calendar to schedule time together, and he has been reluctant to use it. He also felt bad about making plans with his friends and flaking on them. 
 
 We have all been here during these past six months. This was the best application to create that we all plan to utilize in the future.
-
+```
 
 ## Images 
 ![Screenshot (122)](https://user-images.githubusercontent.com/82970208/142732478-7dc2de0f-6c06-420f-9c7c-865fb957fe4c.png)
@@ -38,6 +40,7 @@ We have all been here during these past six months. This was the best applicatio
 ![Screenshot (129)](https://user-images.githubusercontent.com/82970208/142732834-a89f0205-f933-4f98-af65-875a67af85f2.png)
 
 ## Project Requirements
+```
 Our task was to utilize everything that we've learned throughtout the boot camp to create a MERN stack single-page application that works with real-world data to solve a real-world challenge, with a focus on data and user demand. Our project must fulfill the following requirements:
 
 * Use React for the front end.
@@ -52,7 +55,7 @@ Our task was to utilize everything that we've learned throughtout the boot camp 
 * Protect sensitive API key information on the server.
 * Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, etc.).
 * Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
-
+```
 
 ## Usage 
 This web application is dynamic and innovative. Some features of the website include an interactive chatroom for users, a fully functioning calendar that allows you to add an event and invite friends. In addition, on the homepage, there is smooth scrolling, users can scroll to the top when they click the logo in the footer, and much more. 
@@ -76,3 +79,9 @@ Karla Goo: https://github.com/karlagoo
 Micah Waweru: https://github.com/micahwaweru
 
 Jessica White: https://github.com/Whit1JL
+
+##Acknowledgements:
+```
+Acknowledgements:
+Thank you Rich Hosek, Jessica Parker and Chris Yang for all of your guidance throughout this process. We appreciate you!
+```
