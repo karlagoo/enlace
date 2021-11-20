@@ -84,7 +84,7 @@ Micah Waweru: https://github.com/micahwaweru
 
 Jessica White: https://github.com/Whit1JL
 
-##Acknowledgements:
+## Acknowledgements:
 
 Thank you Rich Hosek, Jessica Parker and Chris Yang for all of your guidance throughout this process. We appreciate you!
 
