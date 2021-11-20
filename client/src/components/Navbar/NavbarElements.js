@@ -12,7 +12,6 @@ export const Nav = styled.nav`
     align-items: center;
     position: sticky;
     font-size: 1rem;
-    padding: 0.5rem calc((100vw - 1000px) / 2);
     z-index: 10;
 
     @media screen and (max-width: 960px) {

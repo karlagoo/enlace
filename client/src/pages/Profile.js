@@ -12,7 +12,7 @@ import Footer from '../components/Footer/index'
 
 const Profile = () => {
   return (
-    <Container className="justify-space-around">
+    <Container style={{backgroundColor: "white"}}>
       <Sidebar />
       <Navbar />
       <PersonalInfo />

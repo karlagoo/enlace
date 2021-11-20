@@ -57,7 +57,7 @@ const Navbar = ({ toggle }) => {
               <FaBars />
             </MobileIcon>
             <NavMenu>
-            <NavItem>
+            {/* <NavItem>
                 <NavLinks
                   to='profile'
                   smooth={true}
@@ -94,7 +94,7 @@ const Navbar = ({ toggle }) => {
                 >
                   Sign Up
                 </NavLinks>
-              </NavItem>
+              </NavItem> */}
             </NavMenu>
           </NavbarContainer>
         </Nav>

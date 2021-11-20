@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import { Form, Row, InputGroup, FormControl } from 'react-bootstrap';
-import {CREATE_MESSAGE, CREATE_CHATROOM, UPDATE_CHATROOM} from '../utils/mutations';
+import { CREATE_MESSAGE } from '../utils/mutations';
 import {QUERY_CHAT_MESSAGES} from '../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import Auth from '../utils/auth';
@@ -11,9 +11,7 @@ const ENDPOINT = process.env.PORT || `http://127.0.0.1:3001`;
 
 
 function Chatroom(props) {
-  const [createChatroom, {err}] = useMutation(CREATE_CHATROOM);
   const [createMessage, {error}] = useMutation(CREATE_MESSAGE);
-  const [updateChatroom, {er}] = useMutation(UPDATE_CHATROOM);
   const [state, setState] = useState({ message: '' });
   const [chat, setChat] = useState([]);
   const socketRef = useRef();

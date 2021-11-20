@@ -28,14 +28,13 @@ const resolvers = {
     pendingInvites: async (parent, { _id }, context) => {
       const pending = await User.findOne({ _id: _id }).populate('pendingInvites');
 
-      console.log(_id)
       return pending;
     },
 
     plannedEvents:  async (parent, { _id }, context) => {
       const planned =  await User.findOne({ _id: _id }).populate('plannedEvents');
   
-      console.log(_id)
+
       return planned;
     },
 

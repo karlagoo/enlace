@@ -41,7 +41,8 @@ const InviteBtn = () => {
                 }
             )
 
-
+            handleClose();
+            window.location.reload();
             console.log(createEvent)
         }
         catch (err) {
@@ -70,12 +71,12 @@ const InviteBtn = () => {
     return (
         <div>
             {/* <InviteModal show={show} handleClose={handleClose}/> */}
-            <Button variant='primary' className="col-12" onClick={handleShow}>New Event</Button>
+            <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} className="col-12" onClick={handleShow}>New Event</Button>
             <Modal show={show}>
-                <Modal.Header closeButton onClick={handleClose}>
-                    <Modal.Title>New Event</Modal.Title>
+                <Modal.Header closeButton onClick={handleClose} style={{backgroundColor: '#02353C', borderColor: "#02353C", color: "white"}}>
+                    <Modal.Title style={{backgroundColor: '#02353C', borderColor: "#02353C", color: "white"}}>New Event</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
+                <Modal.Body style={{backgroundColor: '#02353C', color: "white"}}>
                     <Form>
                         <Form.Group className='mb-3' controlId='eventTitle'>
                             <Form.Label>Event Name</Form.Label>
@@ -85,7 +86,7 @@ const InviteBtn = () => {
 
                         <Form.Group className='mb-3' controlId='eventDate'>
                             <Form.Label>Event Date</Form.Label>
-                            <Form.Control type='text' placeholder='MM-DD-YYYY' title="date" onChange={handleFormChange}></Form.Control>
+                            <Form.Control type='text' placeholder='YYYY-MM-DD Format ONLY' title="date" onChange={handleFormChange}></Form.Control>
                             <Form.Text className='text-muted'>Date Here</Form.Text>
                         </Form.Group>
 
@@ -101,15 +102,11 @@ const InviteBtn = () => {
                             <Form.Text className='text-muted'>Time Here</Form.Text>
                         </Form.Group>
 
-                        <Form.Group className='mb-3' controlId='usersByEmail'>
-                            <Form.Label>Add users by Email</Form.Label>
-                            <Form.Control type='email' placeholder='tom@fun.com' onChange={handleFormChange}></Form.Control>
-                        </Form.Group>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant='secondary' onClick={handleClose}>Close</Button>
-                    <Button variant='secondary' onClick={handleFormSubmit}>Add Event</Button>
+                <Modal.Footer style={{backgroundColor: '#02353C', borderColor: "#02353C", color: "white"}}>
+                    <Button style={{ backgroundColor: 'red', borderColor: "red", borderRadius: "15px"}} onClick={handleClose}>Close</Button>
+                    <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} onClick={handleFormSubmit}>Add Event</Button>
                 </Modal.Footer>
             </Modal>
 

@@ -20,14 +20,14 @@ const PersonalInfo = () => {
 
     if (data) {
         return (
-            <Alert variant="success">
+            <Alert style={{ backgroundColor: '#02353C', color: 'white'}}>
                 <Alert.Heading>Welcome back, {userName}!</Alert.Heading>
                 <p>
                     You have {data.pendingInvites.pendingInvites.length} pending invites.
                 </p>
                 <hr />
                 <Container>
-                    <Button className="col-12" href="#pendingInvites">See Pending Invites</Button>
+                    <Button className="col-12" style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} href="#pendingInvites">See Pending Invites</Button>
                     <hr />
                     <InviteBtn />
                 </Container>

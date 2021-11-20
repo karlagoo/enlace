@@ -42,6 +42,7 @@ const PenInvs = () => {
                 }
             )
             console.log(update, updateDecline)
+            window.location.reload()
         }
         catch (err) {
             console.log(err)
@@ -62,10 +63,16 @@ const PenInvs = () => {
                 }
             )
             console.log(update)
+            window.location.reload()
         }
         catch (err) {
             console.log(err)
         }
+    }
+
+    const testData = async (e) => {
+        e.preventDefault();
+        console.log(data)
     }
 
     if (data) {
@@ -76,19 +83,24 @@ const PenInvs = () => {
                     <ListGroup.Item
                         as="ul"
                         className="d-flex justify-content-between align-items-start"
+                        style={{ backgroundColor: '#02353C', color: 'white'}}
                     >
                         <div className="ms-2 me-auto">
                             <div className="fw-bold">{event.title}</div>
-                            <div>On {event.date}, at {event.time}</div>
-                            <div>{event.description}</div>
-                            <div>Invited by:</div>
-                            <Button onClick={acceptInvite} id={event._id}>Accept Event Invite</Button>
-                            <Button onClick={declinePending} id={event._id}>Decline Event Invite</Button>
+                            <hr/>
+                            <div>Time:  {event.time}</div>
+                            <hr/>
+                            <div>Description:  {event.description}</div>
+                            <hr/>
+                            <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} onClick={acceptInvite} id={event._id}>Accept Event Invite</Button>
+                         
+                            <Button style={{ backgroundColor: 'red', borderColor: "red", borderRadius: "15px"}} onClick={declinePending} id={event._id}>Decline Event Invite</Button>
                         </div>
-                        <Badge variant="primary" pill>
-                            14 people attending
+                        <Badge variant="danger" pill>
+                            {event.date}
                         </Badge>
                     </ListGroup.Item>
+                    <hr/>
                 </ListGroup>))}
             </div>
         )

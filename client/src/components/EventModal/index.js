@@ -18,11 +18,7 @@ const EventModal = (props) => {
 
   const { data } = useQuery(QUERY_ALL_USERS)
   const [updateUsers, { error }] = useMutation(UPDATE_PENDING)
-  // const { data: datas } = useQuery(QUERY_CHATROOM,
-  //   {
-  //     variables: { title: title }
-  //   })
-
+ 
     const testChat = (e)=>{
       e.preventDefault();
       history.push({
@@ -82,12 +78,12 @@ const EventModal = (props) => {
         <div>
 
           <Modal show={props.show} >
-            <Modal.Header closeButton onClick={props.handleClose}>
+            <Modal.Header style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}} closeButton onClick={props.handleClose}>
               <Modal.Title>{props.pass.title}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-              <ListGroup>
-                <ListGroup.Item>Time:{props.pass.extendedProps.time}</ListGroup.Item>
+            <Modal.Body style={{ backgroundColor: '#02353C', color: 'white'}}>
+              <ListGroup >
+                <ListGroup.Item>Time:  {props.pass.extendedProps.time}</ListGroup.Item>
                 <ListGroup.Item>Description:</ListGroup.Item>
                 <ListGroup.Item><p>{props.pass.extendedProps.description}</p></ListGroup.Item>
                 <ListGroup.Item>Attendees:</ListGroup.Item>
@@ -99,9 +95,9 @@ const EventModal = (props) => {
                 </ListGroup.Item>
               </ListGroup>
             </Modal.Body>
-            <Form.Group controlId="my_multiselect_field">
+            <Form.Group controlId="my_multiselect_field"  style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}}>
               <Form.Label>Select Users to Invite</Form.Label>
-              <Form.Control as="select" multiple onChange={handleFormSelect}>
+              <Form.Control as="select"style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}} multiple onChange={handleFormSelect}>
                 {data.allUsers.map((user) =>
                   <option key={user._id} value={user._id}>{user.userName}</option>
                 )}
@@ -110,11 +106,11 @@ const EventModal = (props) => {
                 Hold CTRL and click user names to select multiple users.
               </Form.Text>
             </Form.Group>
-            <Modal.Footer>
-              <Button variant="secondary" id={props.pass.extendedProps._id} onClick={invite} >
+            <Modal.Footer style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}}>
+              <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} id={props.pass.extendedProps._id} onClick={invite} >
                 Invite
               </Button>
-              <Button onClick={testChat}>testing chatroom</Button>
+              <Button onClick={testChat} style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}}>Event Chat</Button>
             </Modal.Footer>
           </Modal>))
 
