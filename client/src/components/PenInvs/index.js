@@ -70,15 +70,12 @@ const PenInvs = () => {
         }
     }
 
-    const testData = async (e) => {
-        e.preventDefault();
-        console.log(data)
-    }
 
     if (data) {
         return (
             <div>
-                <h3 id="pendingInvites">Pending Invites</h3>
+                <hr/>
+                {data.pendingInvites.pendingInvites.length ? <h1 id="pendingInvites">Pending Invites</h1> : <h1 id="pendingInvites">No pending invites!</h1>}
                 {data.pendingInvites.pendingInvites.map((event) => (<ListGroup as="ol" numbered>
                     <ListGroup.Item
                         as="ul"
@@ -86,17 +83,17 @@ const PenInvs = () => {
                         style={{ backgroundColor: 'white', color: 'black', boxShadow: '15px 15px 15px black'}}
                     >
                         <div className="ms-2 me-auto">
-                            <div className="fw-bold">{event.title}</div>
+                            <h3 className="fw-bold">{event.title}</h3>
                             <hr/>
-                            <div>Time:  {event.time}</div>
+                            <div><strong>Time:</strong>  {event.time}</div>
                             <hr/>
-                            <div>Description:  {event.description}</div>
+                            <div><strong>Description:</strong>  {event.description}</div>
                             <hr/>
                             <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} onClick={acceptInvite} id={event._id}>Accept Event Invite</Button>
                          
                             <Button style={{ backgroundColor: 'red', borderColor: "red", borderRadius: "15px"}} onClick={declinePending} id={event._id}>Decline Event Invite</Button>
                         </div>
-                        <Badge variant="danger" pill>
+                        <Badge pill bg="success" >
                             {event.date}
                         </Badge>
                     </ListGroup.Item>

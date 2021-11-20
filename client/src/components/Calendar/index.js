@@ -51,6 +51,13 @@ const Calendar = () => {
         <EventModal show={show} handleClose={handleClose} pass={currentEvent} />
         <FullCalendar
         style={{backgroundColor: "white"}}
+        headerToolbar={
+          {
+            start: "today",
+            center: 'title',
+            end: 'prev next'
+          }
+        }
         eventColor={'#02353C'}
         eventBackgroundColor={'#449342'}
         eventBorderColor={'#449342'}

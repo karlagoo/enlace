@@ -79,25 +79,27 @@ const EventModal = (props) => {
 
           <Modal show={props.show} >
             <Modal.Header style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}} closeButton onClick={props.handleClose}>
-              <Modal.Title>{props.pass.title}</Modal.Title>
+              <Modal.Title>{props.pass.title} {props.pass.extendedProps.date}</Modal.Title>
             </Modal.Header>
             <Modal.Body style={{ backgroundColor: '#02353C', color: 'white'}}>
               <ListGroup >
-                <ListGroup.Item>Time:  {props.pass.extendedProps.time}</ListGroup.Item>
-                <ListGroup.Item>Description:</ListGroup.Item>
-                <ListGroup.Item><p>{props.pass.extendedProps.description}</p></ListGroup.Item>
-                <ListGroup.Item>Attendees:</ListGroup.Item>
-                <ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor: '#449342', color: "white", fontWeight: "bold"}}>Time:</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor: '#449342', color: "white", fontStyle: "italic"}}>{props.pass.extendedProps.time}</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor: '#449342', color: "white", fontWeight: "bold"}} >Description:</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor: '#449342', color: "white", fontStyle: "italic"}}><p>{props.pass.extendedProps.description}</p></ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor: '#449342', color: "white", fontWeight: "bold"}}>Attendees:</ListGroup.Item>
+                <ListGroup.Item style={{backgroundColor: '#449342', color: "white", fontStyle: "italic"}}>
                   <ul>
                     {props.pass.extendedProps.users.map((user) =>
                       <li key={user._id}>{user.userName}</li>)}
                   </ul>
                 </ListGroup.Item>
               </ListGroup>
-            </Modal.Body>
-            <Form.Group controlId="my_multiselect_field"  style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}}>
-              <Form.Label>Select Users to Invite</Form.Label>
-              <Form.Control as="select"style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}} multiple onChange={handleFormSelect}>
+              <Form.Group controlId="my_multiselect_field"  style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}}>
+                <hr/>
+              <Modal.Title>Select Users to Invite</Modal.Title>
+              <hr/>
+              <Form.Control as="select"style={{ backgroundColor: '#449342', borderColor: "#02353C", color: 'white'}} multiple onChange={handleFormSelect}>
                 {data.allUsers.map((user) =>
                   <option key={user._id} value={user._id}>{user.userName}</option>
                 )}
@@ -106,6 +108,7 @@ const EventModal = (props) => {
                 Hold CTRL and click user names to select multiple users.
               </Form.Text>
             </Form.Group>
+            </Modal.Body>
             <Modal.Footer style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}}>
               <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} id={props.pass.extendedProps._id} onClick={invite} >
                 Invite
