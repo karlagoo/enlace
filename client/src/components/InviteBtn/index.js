@@ -44,6 +44,7 @@ const InviteBtn = () => {
             handleClose();
             window.location.reload();
             console.log(createEvent)
+            handleClose();
         }
         catch (err) {
             console.log(err)
@@ -101,7 +102,6 @@ const InviteBtn = () => {
                             <Form.Control type='text' rows={3} placeholder='3:33pm' title="time" onChange={handleFormChange} />
                             <Form.Text className='text-muted'>Time Here</Form.Text>
                         </Form.Group>
-
                     </Form>
                 </Modal.Body>
                 <Modal.Footer style={{backgroundColor: '#02353C', borderColor: "#02353C", color: "white"}}>

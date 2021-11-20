@@ -83,18 +83,16 @@ const PenInvs = () => {
                         style={{ backgroundColor: 'white', color: 'black', boxShadow: '15px 15px 15px black'}}
                     >
                         <div className="ms-2 me-auto">
-                            <h3 className="fw-bold">{event.title}</h3>
-                            <hr/>
-                            <div><strong>Time:</strong>  {event.time}</div>
-                            <hr/>
-                            <div><strong>Description:</strong>  {event.description}</div>
-                            <hr/>
-                            <Button style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px"}} onClick={acceptInvite} id={event._id}>Accept Event Invite</Button>
-                         
-                            <Button style={{ backgroundColor: 'red', borderColor: "red", borderRadius: "15px"}} onClick={declinePending} id={event._id}>Decline Event Invite</Button>
+                            <div className="fw-bold">{event.title}</div>
+                            <div>On {event.date}, at {event.time}</div>
+                            <div>{event.description}</div>
+                            <div>Invited by:</div>
+                            <Button onClick={acceptInvite} id={event._id}>Accept Event Invite</Button>
+                            <Button onClick={declinePending} id={event._id}>Decline Event Invite</Button>
+                            <Button onClick={() => console.log(data)} id={event._id}>Decline Event Invite</Button>
                         </div>
-                        <Badge pill bg="success" >
-                            {event.date}
+                        <Badge variant="primary" pill>
+                            {event.date} people attending
                         </Badge>
                     </ListGroup.Item>
                     <hr/>
