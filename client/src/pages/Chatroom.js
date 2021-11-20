@@ -19,7 +19,7 @@ function Chatroom(props) {
   const socketRef = useRef();
   const timestamp = Date.now(); 
   const editedTimestamp = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(timestamp);
-  const roomTitle = props.history.location.state.datas.chatroom.roomName;
+  const roomTitle = props.history.location.state;
 
   const {data} = useQuery(QUERY_CHAT_MESSAGES,
     {
@@ -45,7 +45,7 @@ function Chatroom(props) {
   );
 
   useEffect(() =>{
-    // console.log(data.chatroomMessages);
+    console.log(roomTitle);
     if(data){
       const initialChat = data.chatroomMessages
     setChat([...chat, ...initialChat ])

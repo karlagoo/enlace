@@ -3,9 +3,12 @@ import { Button, Modal, Form, ListGroup } from 'react-bootstrap'
 import { QUERY_ALL_USERS } from '../../utils/queries';
 import { useMutation, useQuery } from '@apollo/client';
 import { UPDATE_PENDING } from '../../utils/mutations';
+import { useHistory } from 'react-router-dom';
 
 
 const EventModal = (props) => {
+  const history = useHistory();
+  const title = props.pass.title;
 
   const [userState, setUserState] = useState([
     {
@@ -15,6 +18,21 @@ const EventModal = (props) => {
 
   const { data } = useQuery(QUERY_ALL_USERS)
   const [updateUsers, { error }] = useMutation(UPDATE_PENDING)
+  // const { data: datas } = useQuery(QUERY_CHATROOM,
+  //   {
+  //     variables: { title: title }
+  //   })
+
+    const testChat = (e)=>{
+      e.preventDefault();
+      history.push({
+        pathname: '/chatroom',
+        state: title,
+        
+      })
+      console.log(props.pass.title)
+ 
+    }
 
 
 
@@ -96,6 +114,7 @@ const EventModal = (props) => {
               <Button variant="secondary" id={props.pass.extendedProps._id} onClick={invite} >
                 Invite
               </Button>
+              <Button onClick={testChat}>testing chatroom</Button>
             </Modal.Footer>
           </Modal>))
 
