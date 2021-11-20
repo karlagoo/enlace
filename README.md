@@ -1,4 +1,4 @@
-⛓️ # Enlace ⛓️
+# Enlace ⛓️
 
 ## Deployed Link
 Heroku 🔗: https://enlace-thunder-cats.herokuapp.com/
