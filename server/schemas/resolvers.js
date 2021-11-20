@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Event, User } = require('../models');
+const { Event, User, Chat, Message } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -28,19 +28,27 @@ const resolvers = {
     pendingInvites: async (parent, { _id }, context) => {
       const pending = await User.findOne({ _id: _id }).populate({path: 'pendingInvites'});
 
-      console.log(_id)
       return pending;
     },
 
     plannedEvents:  async (parent, { _id }, context) => {
       const planned =  await User.findOne({ _id: _id }).populate('plannedEvents');
   
-      console.log(_id)
+
       return planned;
     },
 
+
+    chatroom: async(parent, {title})=>{
+      return Chat.findOne({roomName:title}).populate('messages')
+    },
+
+     chatroomMessages: async (parent, {roomName}) =>{
+       return await Message.find({roomName:{$in:roomName}})
+     }
+
   },
-  
+
 
   Mutation: {
     addUser: async (parent, { userName, email, password }) => {
@@ -74,6 +82,15 @@ const resolvers = {
       return event ;
     },
 
+
+    createChatroom: async (parent, {title})=>{
+      const addRoom = await Chat.create({roomName: title});
+
+      console.log(addRoom)
+      return addRoom ;
+    },
+
+
     updateEventUsers: async (parent, { userId, _id }) => {
       const update = await Event.findOneAndUpdate(
         {_id: _id},
@@ -99,8 +116,17 @@ const resolvers = {
           runValidators: true
         }
       )
-      return decline;
+
+      return decline
     },
+
+    addMessage: async (parent, {message, sender, roomName})=>{
+      const newMessage = await Message.create({message, sender, roomName});
+      
+      return newMessage
+    },
+
+    
 
     sendInvite: async (parent, { userId, _id }) => {
       const send = await User.findOneAndUpdate(

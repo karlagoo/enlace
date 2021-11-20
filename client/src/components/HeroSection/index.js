@@ -26,11 +26,12 @@ import  {
           <VideoBg playsInline autoPlay loop muted src={Video} type='video/mp4' />
         </HeroBg>
         <HeroContent>
-          <HeroH1>ENLACE</HeroH1>
+          <HeroH1>en·​lace (ehn-lah-seh)</HeroH1>
           <HeroP>
             In Spanish, enlace simply translates to link, bond, and connect. 
 
-            Our website provides users with ...
+
+            Our website provides users with a top-notch calendar and chatroom to make scheduling events with friends and loved ones easy as 1-2-3.
           </HeroP>
           <HeroBtnWrapper>
             <Button

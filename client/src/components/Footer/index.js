@@ -3,6 +3,8 @@ import React from 'react';
 import { useLocation, useHistory } from 'react-router-dom';
 import { GoMarkGithub as Icon } from 'react-icons/go';
 import { animateScroll as scroll } from 'react-scroll';
+import logo from '../images/enlace.png';
+import { Img, ImgWrap } from '../Navbar/NavbarElements';
 import {FooterContainer, FooterWrap, FooterLinksContainer, FooterLinksWrapper, FooterLinkItems, FooterLinkTitle, FooterLink, SocialMedia, SocialMediaWrap, WebsiteRights, SocialLogo, SocialIcons, SocialIconLink} from './FooterElements';
 
 
@@ -24,16 +26,13 @@ const Footer = () => {
             <FooterLinksContainer>
               <FooterLinksWrapper>
                 <FooterLinkItems> 
-                  <FooterLinkTitle>About Us</FooterLinkTitle>
-                  <FooterLink to='/sign-up'>How It Works</FooterLink>
+                  <FooterLinkTitle>About</FooterLinkTitle>
+                  <FooterLink to='/login'>Register</FooterLink>
+                  <FooterLink to='/aboutus'>Meet The Team</FooterLink>
                 </FooterLinkItems>
                 <FooterLinkItems>
                   <FooterLinkTitle>Contact Us</FooterLinkTitle>
-                  
-                </FooterLinkItems>
-              </FooterLinksWrapper>
-            </FooterLinksContainer>
-            <SocialMedia>
+                  <SocialMedia>
               <SocialMediaWrap>
               <SocialIcons>
                 <SocialIconLink
@@ -68,12 +67,19 @@ const Footer = () => {
                 target='_blank'aria-label='Github' href='https://github.com/Enlace-Team1/enlace'>Enlace GitHub Repository<Icon />
               </SocialIconLink>
               </SocialIcons>
-
-            <br></br>
+              </SocialMediaWrap>
+            </SocialMedia>
+                </FooterLinkItems>
+              </FooterLinksWrapper>
+            </FooterLinksContainer>
+            <SocialMedia>
+              <SocialMediaWrap>
               <SocialLogo to='/' onClick={toggleHome}>
-                Enlace
+                <ImgWrap>
+                  <Img src={logo} alt={'Enlace'} />
+                </ImgWrap>
               </SocialLogo>
-              <WebsiteRights>ENLACE  &copy; {new Date().getFullYear()} - Michael Heer, Karla Goo, Micah Waweru, and Jessica White
+              <WebsiteRights>ENLACE &copy; {new Date().getFullYear()} - Michael Heer, Karla Goo, Micah Waweru, and Jessica White
                 </WebsiteRights>
               </SocialMediaWrap>
             </SocialMedia>

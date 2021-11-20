@@ -21,7 +21,7 @@ function App() {
       {/* Wrap page elements in Router component to keep track of location state */}
       <Router>
         <Switch>
-        <div className="flex-column justify-flex-start min-100-vh">
+        <div className="flex-column justify-flex-start min-100-vh" style={{backgroundColor: '#02353C', borderColor: "#02353C", color: "white", minHeight: "100vh"}}>
           <div className="container">
             {/* Define routes to render different page components at different paths */}
             <Route exact path="/" component={Home} />

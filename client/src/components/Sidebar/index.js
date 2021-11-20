@@ -7,8 +7,13 @@ import {
   SidebarRoute,
   SideBtnWrap
 } from './SidebarElements';
+import Auth from '../../utils/auth';
 
 const Sidebar = ({ isOpen, toggle }) => {
+
+
+  const loggedIn = Auth.loggedIn();
+  
   return (
     <SidebarContainer isOpen={isOpen} onClick={toggle}>
       {/* <Icon onClick={toggle}>
@@ -16,7 +21,7 @@ const Sidebar = ({ isOpen, toggle }) => {
       </Icon> */}
       <SidebarWrapper>
         <SidebarMenu>
-        <SidebarLink
+        {/* <SidebarLink
             to='profile'
             onClick={toggle}
             smooth={true}
@@ -26,32 +31,32 @@ const Sidebar = ({ isOpen, toggle }) => {
             offset={-80}
           >
             Profile
-          </SidebarLink>
+          </SidebarLink> */}
           <SidebarLink
-            to='about'
-            onClick={toggle}
+            to='aboutUs'
+            onClick={() => window.location.assign('/aboutUs')}
             smooth={true}
             duration={500}
             spy={true}
             exact='true'
             offset={-80}
+            
           >
             About Us
           </SidebarLink>
           <SidebarLink
-            to='signup'
-            onClick={toggle}
+            to='login'
+            onClick={loggedIn ? () => window.location.assign('/profiles') : () => window.location.assign('/login')}
             smooth={true}
             duration={500}
             spy={true}
             exact='true'
             offset={-80}
           >
-            Sign Up
+            {loggedIn ? "Profile" : "Sign In/Sign Up"}
           </SidebarLink>
         </SidebarMenu>
         <SideBtnWrap>
-          <SidebarRoute to='/signin'>Sign In</SidebarRoute>
         </SideBtnWrap>
       </SidebarWrapper>
     </SidebarContainer>

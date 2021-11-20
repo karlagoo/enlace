@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Auth from '../../utils/auth';
-import { Alert, Button, Container, Row } from 'react-bootstrap';
+import { Alert, Button, Container, Spinner } from 'react-bootstrap';
 import InviteBtn from '../InviteBtn';
 import { QUERY_PENDING } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -20,14 +20,14 @@ const PersonalInfo = () => {
 
     if (data) {
         return (
-            <Alert variant="success">
-                <Alert.Heading>Welcome back, {userName}!</Alert.Heading>
-                <p>
+            <Alert className="col-12 col-lg-4 " style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white' }}>
+                <Alert.Heading style={{fontWeight: "bolder"}}>Welcome back, {userName}!</Alert.Heading>
+                <p style={{fontStyle: 'italic'}}>
                     You have {data.pendingInvites.pendingInvites.length} pending invites.
                 </p>
                 <hr />
-                <Container>
-                    <Button className="col-12" href="#pendingInvites">See Pending Invites</Button>
+                <Container >
+                    <Button className="col-12" style={{ backgroundColor: '#449342', borderColor: "#449342", borderRadius: "15px" }} href="#pendingInvites">See Pending Invites</Button>
                     <hr />
                     <InviteBtn />
                 </Container>
@@ -36,7 +36,9 @@ const PersonalInfo = () => {
     }
     else {
         return (
-            <div>Loading...</div>
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
         )
     }
 }

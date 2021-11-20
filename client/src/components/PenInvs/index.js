@@ -42,6 +42,7 @@ const PenInvs = () => {
                 }
             )
             console.log(update, updateDecline)
+            window.location.reload()
         }
         catch (err) {
             console.log(err)
@@ -62,20 +63,24 @@ const PenInvs = () => {
                 }
             )
             console.log(update)
+            window.location.reload()
         }
         catch (err) {
             console.log(err)
         }
     }
 
+
     if (data) {
         return (
             <div>
-                <h3 id="pendingInvites">Pending Invites</h3>
+                <hr/>
+                {data.pendingInvites.pendingInvites.length ? <h1 id="pendingInvites">Pending Invites</h1> : <h1 id="pendingInvites">No pending invites!</h1>}
                 {data.pendingInvites.pendingInvites.map((event) => (<ListGroup as="ol" numbered>
                     <ListGroup.Item
                         as="ul"
                         className="d-flex justify-content-between align-items-start"
+                        style={{ backgroundColor: 'white', color: 'black', boxShadow: '15px 15px 15px black'}}
                     >
                         <div className="ms-2 me-auto">
                             <div className="fw-bold">{event.title}</div>
@@ -90,6 +95,7 @@ const PenInvs = () => {
                             {event.date} people attending
                         </Badge>
                     </ListGroup.Item>
+                    <hr/>
                 </ListGroup>))}
             </div>
         )
