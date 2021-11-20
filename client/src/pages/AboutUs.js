@@ -1,17 +1,33 @@
-import React from 'react';
-import Sidebar from '../components/Sidebar';
+import React, {useState} from 'react';
+import { useQuery } from '@apollo/client';
 import Navbar from '../components/Navbar';
+import Sidebar from '../components/Sidebar';
+import Bio from '../components/Bio';
+import { homeObjOne, homeObjTwo, homeObjThree, homeObjFour } from '../components/Bio/Data';
 import Footer from '../components/Footer';
-//import your bio component and place it in the return
+
+
 
 const AboutUs = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggle = () => {
+        setIsOpen(!isOpen);
+    };
+
     return (
-        <div>
-            <Sidebar />
-            <Navbar />
-            About us page - To be built
+        <main>
+            <div className="flex-row justify-center">
+                <Sidebar isOpen={isOpen} toggle={toggle} />
+                <Navbar toggle={toggle} />
+                <Bio {...homeObjOne} />
+                <Bio {...homeObjTwo} />
+                <Bio {...homeObjThree} />
+                <Bio {...homeObjFour} />
+            </div>
             <Footer />
-        </div>
+        </main>
+
     )
 }
 

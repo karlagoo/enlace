@@ -20,7 +20,7 @@ const PersonalInfo = () => {
 
     if (data) {
         return (
-            <Alert style={{ backgroundColor: '#02353C', color: 'white'}}>
+            <Alert style={{ backgroundColor: '#02353C', borderColor: "#02353C", color: 'white'}}>
                 <Alert.Heading>Welcome back, {userName}!</Alert.Heading>
                 <p>
                     You have {data.pendingInvites.pendingInvites.length} pending invites.

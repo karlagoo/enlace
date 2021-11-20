@@ -12,7 +12,7 @@ import Footer from '../components/Footer/index'
 
 const Profile = () => {
   return (
-    <Container style={{backgroundColor: "white"}}>
+    <Container style={{backgroundColor: "#02353C"}}>
       <Sidebar />
       <Navbar />
       <PersonalInfo />

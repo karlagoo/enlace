@@ -1,15 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const InfoContainer = styled.div`
-  color: #fff;
-  background: #3fd0c9;
-  
-  @media screen and (max-width: 768px) {
+
+export const BioContainer = styled.div`
+background: #02353C;
+color: #fff;
+@media screen and (max-width: 768px) {
     padding: 100px 0;
-  }
+}
 `;
 
-export const InfoWrapper = styled.div`
+
+export const BioWrapper = styled.div`
   display: grid;
   z-index: 1;
   height: 860px;
@@ -20,8 +21,7 @@ export const InfoWrapper = styled.div`
   padding: 0 24px;
   justify-content: center;
 `;
-
-export const InfoRow = styled.div`
+export const BioRow = styled.div`
   display: grid;
   grid-auto-columns: minmax(auto, 1fr);
   align-items: center;
@@ -52,7 +52,7 @@ export const TextWrapper = styled.div`
 `;
 
 export const TopLine = styled.div`
-  color: #02353c;
+  color: #01bf71;
   font-size: 16px;
   line-height: 16px;
   font-weight: 700;
@@ -79,11 +79,6 @@ export const Subtitle = styled.p`
   font-size: 18px;
   line-height: 24px;
   color: ${({ darkText }) => (darkText ? '#010606' : '#fff')};
-`;
-
-export const BtnWrap = styled.div`
-  display: flex;
-  justify-content: flex-start;
 `;
 
 export const ImgWrap = styled.div`

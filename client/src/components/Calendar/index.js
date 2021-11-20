@@ -47,7 +47,7 @@ const Calendar = () => {
   if (data) {
     return (
 
-      <div>
+      <div style={{backgroundColor: "white", color: "#02353C", boxShadow: '15px 15px 15px black'}}>
         <EventModal show={show} handleClose={handleClose} pass={currentEvent} />
         <FullCalendar
         style={{backgroundColor: "white"}}
@@ -64,7 +64,7 @@ const Calendar = () => {
       />
 
       
-
+        <hr/>
       </div>
     )
   }

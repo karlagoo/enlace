@@ -83,7 +83,7 @@ const PenInvs = () => {
                     <ListGroup.Item
                         as="ul"
                         className="d-flex justify-content-between align-items-start"
-                        style={{ backgroundColor: '#02353C', color: 'white'}}
+                        style={{ backgroundColor: 'white', color: 'black', boxShadow: '15px 15px 15px black'}}
                     >
                         <div className="ms-2 me-auto">
                             <div className="fw-bold">{event.title}</div>
