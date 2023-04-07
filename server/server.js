@@ -7,7 +7,7 @@ const db = require('./config/connection');
 const { authMiddleware } = require('./utils/auth');
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3008;
 const app = express();
 const httpServer = require('http').createServer(app);
 
