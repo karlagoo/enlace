@@ -1,7 +1,7 @@
 import React from 'react';
 // Import hooks from React Router
 import { useLocation, useHistory } from 'react-router-dom';
-import { GoMarkGithub as Icon } from 'react-icons/go';
+import { ImGithub as Icon } from 'react-icons/im';
 import { animateScroll as scroll } from 'react-scroll';
 import logo from '../images/enlace.png';
 import { Img, ImgWrap } from '../Navbar/NavbarElements';
