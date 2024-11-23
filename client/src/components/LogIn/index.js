@@ -5,8 +5,6 @@ import Auth from '../../utils/auth';
 import { Container, Form } from 'react-bootstrap';
 
 const LogIn = () => {
-
-    console.log("Login works")
     const [userLogIn, { error }] = useMutation(USER_LOGIN);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
